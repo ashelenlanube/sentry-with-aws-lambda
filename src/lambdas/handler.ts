@@ -17,13 +17,13 @@ export const main = async (
 
   if (event.queryStringParameters?.error === "true") {
     // Simulate an error for testing Sentry integration
-    throw new Error("Something went wrong!");
+    throw new Error("Oops, something went wrong in the lambda!");
   }
 
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Hello from Lambda!",
+      message: "Hello World from Lambda!",
       eventId: requestId,
     }),
   };
