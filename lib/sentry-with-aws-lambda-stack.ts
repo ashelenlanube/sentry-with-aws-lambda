@@ -11,15 +11,15 @@ export class SentryWithAwsLambdaStack extends Stack {
 
     const config = getConfig();
 
-    // Definimos la Lambda
+    // Defining the lambda
     const mySentryLambda = new NodejsFunction(this, "SentryExampleFunction", {
       functionName: "sentry-example-lambda",
-      runtime: Runtime.NODEJS_20_X, // Usa siempre versiones LTS recientes
-      entry: path.join(__dirname, "../src/lambdas/handler.ts"), // Ruta al archivo de la Lambda
+      runtime: Runtime.NODEJS_20_X, // Use always the latest LTS version
+      entry: path.join(__dirname, "../src/lambdas/handler.ts"), // Path to your lambda handler
       handler: "handler",
       environment: {
-        // Pasamos el DSN como variable de entorno
-        // RECOMENDACIÓN: En producción, usa AWS Secrets Manager o SSM Parameter Store
+        // Pass SENTRY_DSN as an environment variable
+        // RECOMMENDED: Use AWS Secrets Manager or AWS Systems Manager Parameter Store for production
         SENTRY_DSN: config.SENTRY_DSN,
       },
     });
