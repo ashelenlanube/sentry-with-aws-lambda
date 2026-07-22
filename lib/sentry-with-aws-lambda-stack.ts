@@ -2,7 +2,7 @@ import { Stack, StackProps } from "aws-cdk-lib";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
-import path = require("node:path");
+import * as path from "node:path";
 import { getConfig } from "./config/config";
 
 export class SentryWithAwsLambdaStack extends Stack {
@@ -12,7 +12,7 @@ export class SentryWithAwsLambdaStack extends Stack {
     const config = getConfig();
 
     // Defining the lambda
-    const mySentryLambda = new NodejsFunction(this, "SentryExampleFunction", {
+    new NodejsFunction(this, "SentryExampleFunction", {
       functionName: "sentry-example-lambda",
       runtime: Runtime.NODEJS_20_X, // Use always the latest LTS version
       entry: path.join(__dirname, "../src/lambdas/handler.ts"), // Path to your lambda handler

@@ -9,7 +9,7 @@ Sentry.init({
 
 // 2. Define the main handler function
 export const main = async (
-  event: APIGatewayProxyEventV2
+  event: APIGatewayProxyEventV2,
 ): Promise<APIGatewayProxyResultV2> => {
   const requestId = event.requestContext.requestId;
 
