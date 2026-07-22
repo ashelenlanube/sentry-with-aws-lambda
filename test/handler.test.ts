@@ -24,4 +24,19 @@ describe("Lambda handler", () => {
 
     logSpy.mockRestore();
   });
+
+  it("throws an error when called with error=true", async () => {
+    const event = {
+      requestContext: {
+        requestId: "request-456",
+      },
+      queryStringParameters: {
+        error: "true",
+      },
+    } as unknown as APIGatewayProxyEventV2;
+
+    await expect(main(event)).rejects.toThrow(
+      "Oops, something went wrong in the lambda!",
+    );
+  });
 });
