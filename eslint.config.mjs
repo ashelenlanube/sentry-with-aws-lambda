@@ -15,5 +15,14 @@ export default tseslint.config(
       globals: globals.node,
     },
   },
+  {
+    files: ["test/**/*.test.ts"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+    },
+  },
   prettier,
 );
